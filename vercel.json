@@ -3,6 +3,10 @@
     {
       "source": "/vibix.html/:path*",
       "destination": "/vibix.html"
+    },
+    {
+      "source": "/lumex.html/:path*",
+      "destination": "/lumex.html"
     }
   ]
 }
