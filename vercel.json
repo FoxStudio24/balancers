@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/vibix.html/:path*",
+      "destination": "/vibix.html"
+    }
+  ]
+}
