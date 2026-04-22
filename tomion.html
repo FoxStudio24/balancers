@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tomion Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden !important;
+            font-family: Arial, sans-serif;
+        }
+
+        body * {
+            display: none !important;
+        }
+
+        #app,
+        #app * {
+            display: block !important;
+        }
+
+        #app {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: #000 !important;
+            z-index: 999999 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+            display: block !important;
+        }
+
+        .error {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding: 24px;
+            text-align: center;
+            line-height: 1.5;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+    var lastRoute = null;
+
+    function checkRouteChange() {
+        var path = window.location.pathname + window.location.hash + window.location.search;
+        if (lastRoute && lastRoute !== path) {
+            window.location.reload();
+        }
+        lastRoute = path;
+    }
+
+    window.addEventListener('hashchange', checkRouteChange);
+    window.addEventListener('popstate', checkRouteChange);
+
+    setInterval(checkRouteChange, 500);
+
+    (function () {
+        var app = document.getElementById("app");
+
+        function parseRoute() {
+            var path = window.location.pathname;
+            var marker = "tomion.html";
+            var index = path.indexOf(marker);
+
+            if (index !== -1) {
+                var tail = path.slice(index + marker.length);
+                var parts = tail.split("/").filter(Boolean);
+                if (parts.length >= 2 && parts[0] === "t") {
+                    return { id: parts[1] };
+                }
+            }
+
+            var params = new URLSearchParams(window.location.search);
+            var queryId = params.get("id");
+            if (queryId) {
+                return { id: queryId };
+            }
+
+            var hash = window.location.hash.replace(/^#/, "");
+            var hashParts = hash.split("/").filter(Boolean);
+            if (hashParts.length >= 2 && hashParts[0] === "t") {
+                return { id: hashParts[1] };
+            }
+
+            return null;
+        }
+
+        var route = parseRoute();
+
+        if (!route || !/^\d+$/.test(route.id)) {
+            app.innerHTML = '<div class="error">Некорректная ссылка.<br>Только сериалы!<br>Сериал: /tomion.html/t/460586<br><br>Для тестирования используйте:<br>/tomion.html#/t/460586<br>или /tomion.html?id=460586</div>';
+            return;
+        }
+
+        var iframeUrl = "https://tomion.org/tvb/" + encodeURIComponent(route.id) + "?voices_without_ads";
+
+        app.innerHTML =
+            '<iframe src="' + iframeUrl + '" ' +
+            'allow="autoplay" allowfullscreen="allowfullscreen" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>';
+    })();
+</script>
+</body>
+</html>

@@ -7,6 +7,10 @@
     {
       "source": "/veoveo.html/:path*",
       "destination": "/veoveo.html"
+    },
+    {
+      "source": "/tomion.html/:path*",
+      "destination": "/tomion.html"
     }
   ]
 }
