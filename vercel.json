@@ -5,8 +5,8 @@
       "destination": "/vibix.html"
     },
     {
-      "source": "/lumex.html/:path*",
-      "destination": "/lumex.html"
+      "source": "/veoveo.html/:path*",
+      "destination": "/veoveo.html"
     }
   ]
 }
