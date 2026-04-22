@@ -1,0 +1,22 @@
+
+1. VIBIX
+   ├─ Фильм:  https://balancers-eta.vercel.app/vibix.html/m/ID_КИНОПОИСКА
+   └─ Сериал: https://balancers-eta.vercel.app/vibix.html/t/ID_КИНОПОИСКА
+   
+   Примеры:
+   - https://balancers-eta.vercel.app/vibix.html/m/409424
+   - https://balancers-eta.vercel.app/vibix.html/t/409424
+
+2. VeoVeo
+   ├─ Фильм:  https://balancers-eta.vercel.app/veoveo.html/m/ID_КИНОПОИСКА
+   └─ Сериал: https://balancers-eta.vercel.app/veoveo.html/t/ID_КИНОПОИСКА
+   
+   Примеры:
+   - https://balancers-eta.vercel.app/veoveo.html/m/409424
+   - https://balancers-eta.vercel.app/veoveo.html/t/409424
+
+3. TOMION (только сериалы!)
+   └─ Сериал: https://balancers-eta.vercel.app/tomion.html/t/ID_КИНОПОИСКА
+   
+   Примеры:
+   - https://balancers-eta.vercel.app/tomion.html/t/460586

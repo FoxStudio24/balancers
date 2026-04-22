@@ -70,6 +70,13 @@
 <div id="app"></div>
 
 <script>
+    // Запрос полноэкранного режима при загрузке
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.log('Полноэкран недоступен:', err);
+        });
+    }
+
     var lastRoute = null;
 
     function checkRouteChange() {
